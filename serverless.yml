@@ -11,6 +11,15 @@ plugins:
 functions:
   getUsers:
     handler: src/functions/users/handler.main
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:Scan
+          - dynamodb:GetItem
+          - dynamodb:PutItem
+          - dynamodb:UpdateItem
+          - dynamodb:DeleteItem
+        Resource: "arn:aws:dynamodb:us-east-1:875968654243:table/users"
     events:
       - http:
           path: users
