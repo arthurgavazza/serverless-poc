@@ -14,6 +14,7 @@ plugins:
 appSync:
     name: appsync-api
     authentication: AWS_IAM
+    schema: 'schema.graphql'
     resolvers:
       getUsers:
         dataSource:
