@@ -10,8 +10,8 @@ plugins:
   - serverless-iam-roles-per-function
   - serverless-appsync-plugin
 
-custom:
-  appSync:
+
+appSync:
     name: appsync-users-api
     authenticationType: AWS_IAM
     schema: schema.graphql
