@@ -19,11 +19,11 @@ describe('getUsers', () => {
       callback(null, mockData);
     });
 
-    const result = await getUsers({} as APIGatewayProxyEvent , {} as Context, null);
-    if (result){
-      expect(result.statusCode).toEqual(200);
-      expect(result.body).toEqual(JSON.stringify(mockData.Items));
-    }
+    const result = await getUsers({} as APIGatewayProxyEvent , {} as Context);
+   
+    expect(result.statusCode).toEqual(200);
+    expect(result.body).toEqual(JSON.stringify(mockData.Items));
+    
   });
 
   it('should return an error message when an error occurs', async () => {
@@ -33,10 +33,10 @@ describe('getUsers', () => {
       callback(new Error(errorMessage));
     });
 
-    const result = await getUsers({} as APIGatewayProxyEvent , {} as Context, null);
-    if (result){
-        expect(result.statusCode).toEqual(500);
-        expect(result.body).toEqual(JSON.stringify({ message: 'Ocorreu um erro ao buscar os usuários.' }));
-    }
+    const result = await getUsers({} as APIGatewayProxyEvent , {} as Context);
+
+    expect(result.statusCode).toEqual(500);
+    expect(result.body).toEqual(JSON.stringify({ message: 'Ocorreu um erro ao buscar os usuários.' }));
+    
   });
 });

@@ -1,5 +1,5 @@
 
-import { middyfy } from '@libs/lambda';
+// import { middyfy } from '@libs/lambda';
 
 // const getUsers: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
 //   return formatJSONResponse({
@@ -8,12 +8,13 @@ import { middyfy } from '@libs/lambda';
 //   });
 // };
 
-import { APIGatewayProxyHandler } from 'aws-lambda';
+import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from 'aws-lambda';
 import * as AWS from 'aws-sdk';
 
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
-export const getUsers: APIGatewayProxyHandler = async (_event, _context) => {
+
+export async function getUsers(_event:APIGatewayProxyEvent, _context: Context): Promise<APIGatewayProxyResult> {
+  const dynamoDb = new AWS.DynamoDB.DocumentClient();
   try {
     const params = {
       TableName: 'users',
@@ -34,4 +35,4 @@ export const getUsers: APIGatewayProxyHandler = async (_event, _context) => {
 };
 
 
-export const main = middyfy(getUsers);
+// export const main = middyfy(getUsers);
