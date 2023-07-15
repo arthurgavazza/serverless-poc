@@ -12,9 +12,9 @@ plugins:
 
 
 appSync:
-    name: appsync-api
+    name: appsync-poc-api
     authentication:
-      type: AWS_IAM
+      type: API_KEY
     schema: 'schema.graphql'
     dataSources:
       getUsers:

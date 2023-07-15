@@ -4,7 +4,7 @@ type User {
 }
 
 type Query {
-  getUsers: [User!]!
+  getUsers: [User]
 }
 
 schema {
