@@ -10,7 +10,7 @@ plugins:
 
 functions:
   getUsers:
-    handler: handler.getUsers
+    handler: src/functions/users/handler.main
     events:
       - http:
           path: users

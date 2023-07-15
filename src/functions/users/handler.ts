@@ -35,4 +35,4 @@ export async function getUsers(_event:APIGatewayProxyEvent, _context: Context): 
 };
 
 
-// export const main = middyfy(getUsers);
+export const main = getUsers;
