@@ -22,7 +22,9 @@ describe('getUsers', () => {
     const result = await getUsers({} as APIGatewayProxyEvent , {} as Context);
    
     expect(result.statusCode).toEqual(200);
-    expect(result.body).toEqual(JSON.stringify(mockData.Items));
+    const {body: bodyStr} = result
+    const body = JSON.parse(bodyStr)
+    expect(JSON.stringify(body.getUsers)).toEqual(JSON.stringify(mockData.Items));
     
   });
 

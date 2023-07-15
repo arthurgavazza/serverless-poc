@@ -13,16 +13,24 @@ plugins:
 
 appSync:
     name: appsync-api
-    authentication: AWS_IAM
+    authentication:
+      type: AWS_IAM
     schema: 'schema.graphql'
+    dataSources:
+      getUsers:
+        type: 'AWS_LAMBDA'
+        config:
+          function:
+            timeout: 30
+            handler: src/functions/users/handler.main
     resolvers:
       getUsers:
-        dataSource:
-          type: 'AWS_LAMBDA'
-          config:
-            function:
-              timeout: 30
-              handler: src/functions/users/handler.main
+        kind: UNIT
+        type: Query
+        field: getUsers
+        dataSource: getUsers
+
+
 
 functions:
   getUsers:

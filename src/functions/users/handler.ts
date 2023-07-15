@@ -24,7 +24,7 @@ export async function getUsers(_event:APIGatewayProxyEvent, _context: Context): 
 
     return  {
       statusCode: 200,
-      body: JSON.stringify(data.Items),
+      body: JSON.stringify({getUsers: data.Items}),
     };
   } catch (error) {
     return {
