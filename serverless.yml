@@ -10,15 +10,23 @@ plugins:
   - serverless-iam-roles-per-function
   - serverless-appsync-plugin
 
-
 custom:
-  appsync:
+  appSync:
+    name: appsync-api
+    authenticationType: AWS_IAM
+    schema: schema.graphql
+    dataSources:
+      - type: AWS_LAMBDA
+        name: lambdaDataSource
+        description: "Lambda data source"
+        config:
+          lambdaFunctionArn: arn:aws:lambda:us-east-1:875968654243:function:serverless-poc-dev-getUsers
     mappingTemplates:
-      - type: Query
-        request: false
-        response: false
-        dataSource: myLambdaSource
+      - dataSource: lambdaDataSource
+        type: Query
         field: getUsers
+        request: resolvers/getUsers/request.vtl
+        response: resolvers/getUsers/response.vtl
 
 functions:
   getUsers:
